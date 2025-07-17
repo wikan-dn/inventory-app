@@ -18,6 +18,6 @@ jobs:
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@master
         with:
-          host-url: 'http://your-server-url:9000'
+          host-url: 'http://localhost:9000'
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
