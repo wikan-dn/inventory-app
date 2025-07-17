@@ -9,22 +9,15 @@ on:
       - main
 
 jobs:
-  sonarcloud:
+  sonarqube-scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@master
         with:
-          python-version: 3.13
-
-      - name: Install dependencies
-        run: |
-          pip install pytest
-      - name: SonarQube Analysis
-        uses: sonarsource/sonarqube-scan-action@v1.0.0
-        with:
-          host-url: 'http://your-server:9000'
-          login: ${{ secrets.SONAR_TOKEN }}
+          host-url: 'http://your-server-url:9000'
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
